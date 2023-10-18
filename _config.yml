@@ -1,3 +1,6 @@
 url: https://www.goldsborough.io/
 
 permalink: /:categories/:title
+
+plugins:
+  - jekyll-sitemap
