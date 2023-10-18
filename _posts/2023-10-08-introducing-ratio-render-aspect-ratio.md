@@ -1,5 +1,4 @@
 ---
-date: 2023-08-31
 layout: post
 title: "Introducing, Ratio Render"
 description: Ratio Render is a cloud-service which dynamically generates images based on aspect ratio.
