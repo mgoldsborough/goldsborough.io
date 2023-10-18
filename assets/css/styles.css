@@ -1,0 +1,21 @@
+h1,
+h2,
+h3,
+h4, 
+h5, 
+h6,
+p, 
+span,
+a {
+  font-family: 'League Spartan', sans-serif;
+}
+
+.post > .post-header > .post-title {
+  font-weight: 600;
+  font-size: 3em;
+}
+
+.post > .post-header > .post-meta {
+  color: rgb(185, 185, 185);
+  font-size: 12px;
+}

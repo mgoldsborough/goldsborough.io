@@ -1,0 +1,23 @@
+---
+layout: default
+title: The homepage of Mathew Goldsborough
+description: The homepage of Mathew Goldsborough, mission dirven leader, coder, and technologist.
+permalink: /
+og:
+  website: true
+---
+
+<h1 class="py-3">Posts</h1>
+
+{% for post in site.posts %}
+<ul class="list-unstyled">
+  <li>
+    <span class="post-meta">{{ post.date | date: "%-d %B %Y" }}</span>
+    <span class="post-title">
+      <h3>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </h3>
+    </span>
+  </li>
+</ul>
+{% endfor %}
