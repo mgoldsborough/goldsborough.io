@@ -1,3 +1,27 @@
+/* Light */
+@font-face {
+  font-family: 'League Spartan';
+  font-weight: 300;
+  font-display: swap;
+  src:  url("./assets/fonts/LeagueSpartan-Light.ttf") format('truetype');
+}
+
+/* Regular */
+@font-face {
+  font-family: 'League Spartan';
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/LeagueSpartan-Regular.ttf") format('truetype');
+}
+
+/* Bold */
+@font-face {
+  font-family: 'League Spartan';
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/LeagueSpartan-Bold.ttf") format('truetype');
+}
+
 h1,
 h2,
 h3,
@@ -11,7 +35,7 @@ a {
 }
 
 .post > .post-header > .post-title {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 3em;
 }
 

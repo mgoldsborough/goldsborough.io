@@ -1,0 +1,15 @@
+{
+  "name": "Goldsborough.io",
+  "icons": [
+    {
+      "src": "/assets/images/MathewGoldsborough_Small.webp",
+      "sizes": "500x500",
+      "type": "image/webp"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "landscape"
+}
