@@ -10,7 +10,7 @@ Inspired by my own experiences in the tech job market, I developed a unique tool
 
 Introducing the [Who is Hiring?](https://whoishiring.goldsborough.io/) app - an open-source project designed to simplify navigating through Hacker News' 'Who's Hiring' monthly posts. Crafted with React and Tailwind, built with Jekyll, and hosted on gh-pages, this app is your gateway to the latest tech job listings.
 
-![Who is Hiring App Interface](/assets/images/2024-01-08/who_is_hiring.png "Who is Hiring App Interface")
+<img class="img-fluid" src="/assets/images/2024-01-08/who_is_hiring.png" alt="Who is Hiring App Interface" />
 
 ## Simplifying Your Job Hunt
 
@@ -18,19 +18,19 @@ Introducing the [Who is Hiring?](https://whoishiring.goldsborough.io/) app - an 
 
 Every month, Hacker News publishes an *Ask HN: Who is hiring?* thread. This app allows you to explore the latest posts by default, with the option to explore previous months through the use of a simple dropdown selection.
 
-![Selecting a Hiring Post](/assets/images/2024-01-08/select_who_is_hiring_post.png "Selecting a Hiring Post")
+<img class="img-fluid" src="/assets/images/2024-01-08/select_who_is_hiring_post.png" alt="Selecting a Hiring Post" />
 
 ### Advanced Keyword Filtering
 
 Find exactly what you're looking for with our keyword search feature. Whether it's mainstream technologies like Node.js and Python or niche languages like OCaml, our app narrows down your choices with ease.
 
-![Keyword Search Feature](/assets/images/2024-01-08/keyword_search.png "Keyword Search in Action")
+<img class="img-fluid" src="/assets/images/2024-01-08/keyword_search.png" alt="Keyword Search Feature" />
 
 ### Remote Opportunities at Your Fingertips
 
 With remote work on the rise, filter to view only remote job listings. A simple checkbox brings you closer to finding your next remote role.
 
-![Filtering Remote Jobs](/assets/images/2024-01-08/filter_remote_jobs.png "Filtering for Remote Opportunities")
+<img class="img-fluid" src="/assets/images/2024-01-08/filter_remote_jobs.png" alt="Filtering Remote Jobs" />
 
 **Feedback**:
 
