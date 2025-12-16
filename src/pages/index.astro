@@ -7,11 +7,14 @@ const posts = await getCollection('posts');
 // Sort posts by date descending
 posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-// Helper to format date like Jekyll's "%-d %B %Y"
+// Filter to featured posts only (2020+) for main listing
+const featuredPosts = posts.filter(post => post.data.date.getFullYear() >= 2020);
+
+// Helper to format date
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('en-US', {
     day: 'numeric',
-    month: 'long',
+    month: 'short',
     year: 'numeric',
     timeZone: 'UTC'
   });
@@ -19,22 +22,249 @@ const formatDate = (date: Date) => {
 ---
 
 <BaseLayout
-  title="Mathew Goldsborough | Mission Driven Leader and Technologist"
-  description="Mathew Goldsborough is a mission driven leader, coder, and technologist. Awarded Fast Company's Most Innovative in 2023 and a TEDx Speaker."
+  title="Mathew Goldsborough | Founder & Engineer"
+  description="Founder & CEO of NimbleBrain, building conversational automation. Previously co-founded Forever Oceans. TEDx speaker. Fast Company Most Innovative (2023)."
   og={{ website: true }}
 >
-  <h1 class="py-3">Posts</h1>
+  <!-- Hero Section - Editorial Style -->
+  <section class="hero">
+    <div class="hero-eyebrow animate-in">Founder & Engineer</div>
+    <h1 class="hero-title">Mathew<br/>Goldsborough</h1>
+    <div class="hero-rule animate-in animate-in-delay-1"></div>
+  </section>
 
-  {posts.map((post) => (
-    <ul class="list-unstyled">
-      <li>
-        <span class="post-meta">{formatDate(post.data.date)}</span>
-        <span class="post-title">
-          <h3>
-            <a href={`/${post.id}`}>{post.data.title}</a>
-          </h3>
-        </span>
-      </li>
-    </ul>
-  ))}
+  <!-- About Strip -->
+  <section class="about-strip animate-in animate-in-delay-1">
+    <div class="about-content">
+      <p class="about-text">
+        Building <a href="https://www.nimblebrain.ai">NimbleBrain</a>, a conversational automation platform.
+        Previously co-founded Forever Oceans, scaling autonomous ocean farming globally.
+        <a href="/speaking">TEDx speaker</a>. Fast Company Most Innovative. 4 patents.
+      </p>
+    </div>
+  </section>
+
+  <!-- Two Column Layout -->
+  <div class="content-grid animate-in animate-in-delay-2">
+
+    <!-- Writing Column -->
+    <section class="writing-column">
+      <h2 class="column-heading">Writing</h2>
+
+      <ul class="writing-list">
+        {featuredPosts.slice(0, 5).map((post, i) => (
+          <li class="writing-item">
+            <a href={`/${post.id}`} class="writing-link">
+              <span class="writing-number">{String(i + 1).padStart(2, '0')}</span>
+              <span class="writing-title">{post.data.title}</span>
+              <span class="writing-date">{formatDate(post.data.date)}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {featuredPosts.length > 5 && (
+        <a href="/archive" class="see-all">All articles</a>
+      )}
+    </section>
+
+    <!-- Focus Column -->
+    <section class="focus-column">
+      <h2 class="column-heading">Focus Areas</h2>
+
+      <div class="focus-list">
+        <div class="focus-item">
+          <span class="focus-marker"></span>
+          <span class="focus-text">MCP & Agent Architecture</span>
+        </div>
+        <div class="focus-item">
+          <span class="focus-marker"></span>
+          <span class="focus-text">Conversational Automation</span>
+        </div>
+        <div class="focus-item">
+          <span class="focus-marker"></span>
+          <span class="focus-text">AI for Business Operations</span>
+        </div>
+      </div>
+
+      <a href="/speaking" class="see-all">Speaking & Workshops</a>
+    </section>
+
+  </div>
+
 </BaseLayout>
+
+<style>
+  /* Hero - Editorial Magazine Style */
+  .hero {
+    padding: var(--space-xl) 0;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 12vw, 5.5rem);
+    line-height: 0.95;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .hero-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), transparent);
+    margin-top: var(--space-lg);
+  }
+
+  /* About Strip */
+  .about-strip {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--space-xl);
+  }
+
+  .about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 600px;
+  }
+
+  /* Content Grid */
+  .content-grid {
+    display: grid;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1.5fr 1fr;
+      gap: calc(var(--space-xl) * 1.5);
+    }
+  }
+
+  /* Column Headings */
+  .column-heading {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Writing List */
+  .writing-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-lg) 0;
+  }
+
+  .writing-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .writing-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-md);
+    align-items: baseline;
+    padding: var(--space-md) 0;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .writing-link:hover {
+    padding-left: var(--space-sm);
+  }
+
+  .writing-number {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .writing-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .writing-link:hover .writing-title {
+    color: var(--accent-primary);
+  }
+
+  .writing-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Focus Column */
+  .focus-list {
+    margin-bottom: var(--space-lg);
+  }
+
+  .focus-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+  }
+
+  .focus-marker {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .focus-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  /* See All Link */
+  .see-all {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .see-all::after {
+    content: '→';
+    transition: transform var(--transition-fast);
+  }
+
+  .see-all:hover {
+    color: var(--accent-primary);
+  }
+
+  .see-all:hover::after {
+    transform: translateX(4px);
+  }
+</style>
