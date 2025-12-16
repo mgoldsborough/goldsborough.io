@@ -1,4 +1,54 @@
-/* Light */
+/* Bootstrap - self-hosted for better performance */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Display font - Fraunces for headlines (soft, wonky character) */
+/* Note: Fraunces is loaded via preload link in BaseLayout.astro for better performance */
+
+/* ========================================
+   CUSTOM PROPERTIES (Color Palette)
+   ======================================== */
+:root {
+  /* Signature accent - warm gold/amber inspired by "Goldsborough" */
+  --accent-primary: #d4a853;
+  --accent-primary-hover: #e8bc5e;
+  --accent-secondary: #8b7355;
+
+  /* Neutrals for dark theme */
+  --bg-dark: #0d0d0d;
+  --bg-dark-elevated: #161616;
+  --bg-dark-surface: #1a1a1a;
+  --text-dark-primary: #f5f5f5;
+  --text-dark-secondary: #a0a0a0;
+  --text-dark-muted: #6b6b6b;
+  --border-dark: rgba(255, 255, 255, 0.08);
+
+  /* Neutrals for light theme */
+  --bg-light: #fafafa;
+  --bg-light-elevated: #ffffff;
+  --bg-light-surface: #f0f0f0;
+  --text-light-primary: #1a1a1a;
+  --text-light-secondary: #4a4a4a;
+  --text-light-muted: #8a8a8a;
+  --border-light: rgba(0, 0, 0, 0.08);
+
+  /* Animation timing */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+}
+
+/* ========================================
+   FONTS
+   ======================================== */
+
+/* Body font - League Spartan */
 @font-face {
   font-family: 'League Spartan';
   font-weight: 300;
@@ -6,7 +56,6 @@
   src: url("/assets/fonts/LeagueSpartan-Light.ttf") format('truetype');
 }
 
-/* Regular */
 @font-face {
   font-family: 'League Spartan';
   font-weight: 400;
@@ -14,7 +63,6 @@
   src: url("/assets/fonts/LeagueSpartan-Regular.ttf") format('truetype');
 }
 
-/* Bold */
 @font-face {
   font-family: 'League Spartan';
   font-weight: 700;
@@ -22,24 +70,375 @@
   src: url("/assets/fonts/LeagueSpartan-Bold.ttf") format('truetype');
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-a {
+/* Typography assignments */
+h1, h2, h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 72;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+h4, h5, h6, p, span, a, li, td, th, label, input, textarea, button {
   font-family: 'League Spartan', sans-serif;
 }
 
-.post > .post-header > .post-title {
+/* ========================================
+   THEME TRANSITIONS
+   ======================================== */
+html {
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+body, .navbar, .card, .btn, footer, main {
+  transition: background-color var(--transition-base),
+              color var(--transition-base),
+              border-color var(--transition-base);
+}
+
+/* ========================================
+   DARK THEME (Default)
+   ======================================== */
+[data-bs-theme="dark"] {
+  --bg: var(--bg-dark);
+  --bg-elevated: var(--bg-dark-elevated);
+  --bg-surface: var(--bg-dark-surface);
+  --text-primary: var(--text-dark-primary);
+  --text-secondary: var(--text-dark-secondary);
+  --text-muted: var(--text-dark-muted);
+  --border: var(--border-dark);
+}
+
+[data-bs-theme="dark"] body {
+  background: var(--bg-dark);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(139, 115, 85, 0.05), transparent);
+  background-attachment: fixed;
+}
+
+/* ========================================
+   LIGHT THEME
+   ======================================== */
+[data-bs-theme="light"] {
+  --bg: var(--bg-light);
+  --bg-elevated: var(--bg-light-elevated);
+  --bg-surface: var(--bg-light-surface);
+  --text-primary: var(--text-light-primary);
+  --text-secondary: var(--text-light-secondary);
+  --text-muted: var(--text-light-muted);
+  --border: var(--border-light);
+}
+
+[data-bs-theme="light"] body {
+  background: var(--bg-light);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.06), transparent),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(139, 115, 85, 0.04), transparent);
+  background-attachment: fixed;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Staggered animation classes */
+.animate-in {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.animate-in-delay-1 { animation-delay: 0.1s; }
+.animate-in-delay-2 { animation-delay: 0.2s; }
+.animate-in-delay-3 { animation-delay: 0.3s; }
+.animate-in-delay-4 { animation-delay: 0.4s; }
+.animate-in-delay-5 { animation-delay: 0.5s; }
+
+/* ========================================
+   LINKS & INTERACTIVE ELEMENTS
+   ======================================== */
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+a:hover {
+  color: var(--accent-primary-hover);
+}
+
+/* Underline animation for inline links */
+main p a, main li a {
+  background-image: linear-gradient(var(--accent-primary), var(--accent-primary));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--transition-base), color var(--transition-fast);
+}
+
+main p a:hover, main li a:hover {
+  background-size: 100% 1px;
+}
+
+/* Nav links keep Bootstrap styling */
+.nav-link {
+  color: inherit !important;
+}
+
+.nav-link:hover {
+  color: var(--accent-primary) !important;
+}
+
+/* ========================================
+   HOMEPAGE HERO
+   ======================================== */
+.hero-section {
+  position: relative;
+  padding: var(--space-xl) 0;
+}
+
+.hero-section h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  margin-bottom: var(--space-md);
+}
+
+.hero-section .lead {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 540px;
+}
+
+/* Accent line */
+.accent-line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  border: none;
+  margin: var(--space-lg) 0;
+}
+
+/* ========================================
+   POST LIST
+   ======================================== */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list-item {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--border);
+  transition: transform var(--transition-fast), padding-left var(--transition-fast);
+}
+
+.post-list-item:hover {
+  transform: translateX(8px);
+}
+
+.post-list-item:last-child {
+  border-bottom: none;
+}
+
+.post-list-item .post-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.post-list-item h3 {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.post-list-item h3 a {
+  color: var(--text-primary);
+}
+
+.post-list-item h3 a:hover {
+  color: var(--accent-primary);
+}
+
+/* ========================================
+   SECTION HEADINGS
+   ======================================== */
+.section-heading {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 0.75rem;
   font-weight: 700;
-  font-size: 3em;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ========================================
+   CARDS & SURFACES
+   ======================================== */
+.surface {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.surface:hover {
+  border-color: var(--accent-primary);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn-accent {
+  background: var(--accent-primary);
+  color: var(--bg-dark);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-accent::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn-accent:hover {
+  background: var(--accent-primary-hover);
+  color: var(--bg-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 168, 83, 0.3);
+}
+
+.btn-accent:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-accent:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.btn-ghost:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ========================================
+   POST STYLES
+   ======================================== */
+.post > .post-header > .post-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 72;
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .post > .post-header > .post-meta {
-  color: rgb(185, 185, 185);
-  font-size: 12px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+footer {
+  border-top: 1px solid var(--border) !important;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+.text-accent {
+  color: var(--accent-primary);
+}
+
+.bg-accent {
+  background-color: var(--accent-primary);
+}
+
+/* Noise texture overlay (optional - adds subtle grain) */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 9999;
 }

@@ -4,7 +4,7 @@ title: Installing f.lux on Ubuntu 13.04 64-bit with Multi-Monitor Support
 description: How to install f.lux on Ubuntu 13.04.
 ---
 
-Yesterday I [posted]({% post_url 2013-10-27-just-get-flux %}) about how a nifty little piece of software called *f.lux* is yesterday.
+Yesterday I [posted](/just-get-flux/) about how a nifty little piece of software called *f.lux*.
 It runs great on my Ubuntu 13.04 64-bit computer with two Dell widescreens but it took some hacking to get here. Unfortunately
 the *f.lux* package installed via apt-get does not support multiple monitors out of the box. Below are the steps I took to get 
 *f.lux* to work.

@@ -3,15 +3,80 @@ const currentYear = new Date().getFullYear();
 ---
 
 <div class="container-fluid mt-auto">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-5 border-top">
-    <div class="col-md-4 col-sm-12 d-flex ps-3">
-      <span class="mb-3 mb-md-0 text-muted"><strong>Mathew Goldsborough </strong>&copy; {currentYear}</span>
+  <footer class="footer-container py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <span class="footer-name">Mathew Goldsborough</span>
+          <span class="footer-copyright"> &copy; {currentYear}</span>
+          <p class="footer-tagline">
+            Building conversational automation at <a href="https://www.nimblebrain.ai">NimbleBrain</a>.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <ul class="footer-nav">
+            <li><a href="/advisory">Advisory</a></li>
+            <li><a href="/speaking">Speaking</a></li>
+            <li><a href="mailto:mat@goldsborough.io">Contact</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-
-    <ul class="nav col-md-4 col-sm-12 list-unstyled d-flex justify-content-end pe-3">
-      <li class="ms-3">
-        <a class="text-muted" href="https://github.com/mgoldsborough/goldsborough.io">Source Code</a>
-      </li>
-    </ul>
   </footer>
 </div>
+
+<style>
+  .footer-container {
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .footer-copyright {
+    color: var(--text-muted);
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .footer-tagline a {
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-tagline a:hover {
+    color: var(--accent-primary);
+  }
+
+  .footer-nav {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .footer-nav {
+      justify-content: flex-end;
+    }
+  }
+
+  .footer-nav a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+  }
+
+  .footer-nav a:hover {
+    color: var(--accent-primary);
+  }
+</style>

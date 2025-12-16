@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+
+// Sort posts by date descending
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Helper to format date like Jekyll's "%-d %B %Y"
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  });
+};
+
+// Group posts by year
+const postsByYear = posts.reduce((acc, post) => {
+  const year = post.data.date.getFullYear();
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(post);
+  return acc;
+}, {} as Record<number, typeof posts>);
+
+const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
+---
+
+<BaseLayout
+  title="Archive | Mathew Goldsborough"
+  description="All blog posts from Mathew Goldsborough, archived by year."
+  og={{ website: true }}
+>
+  <h1 class="py-3">Archive</h1>
+  <p class="text-muted mb-5">All posts, organized by year.</p>
+
+  {years.map((year) => (
+    <div class="mb-5">
+      <h2 class="border-bottom pb-2 mb-3">{year}</h2>
+      {postsByYear[year].map((post) => (
+        <ul class="list-unstyled">
+          <li>
+            <span class="post-meta">{formatDate(post.data.date)}</span>
+            <span class="post-title">
+              <h3>
+                <a href={`/${post.id}`}>{post.data.title}</a>
+              </h3>
+            </span>
+          </li>
+        </ul>
+      ))}
+    </div>
+  ))}
+</BaseLayout>
