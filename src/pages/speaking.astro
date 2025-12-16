@@ -1,0 +1,518 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import honoluluTechWeekImg from "../assets/images/honolulu-tech-week-mcp.jpg";
+import blueStartupsImg from "../assets/images/mathew_goldsborough_blue_startups_demo_day.jpg";
+
+// Speaking engagements - chronologically ordered
+const talks = [
+  {
+    title: "Plugging AI Into Your Business: A Hands-On Tour of MCP",
+    event: "Honolulu Tech Week",
+    eventUrl: "https://honolulutechweek.com/",
+    location: "Honolulu, HI",
+    year: "2024",
+    type: "workshop",
+    image: honoluluTechWeekImg,
+    featured: true,
+  },
+  {
+    title: "The CX Files: CEO Panel on AI Agents",
+    event: "Podcast",
+    year: "2024",
+    type: "video",
+    videoId: "Rssgodm8aCo",
+  },
+  {
+    title: "Blue Startups Demo Day: NimbleBrain",
+    event: "Blue Startups",
+    eventUrl: "https://www.bluestartups.com/",
+    location: "Honolulu, HI",
+    year: "2024",
+    type: "image",
+    image: blueStartupsImg,
+    imagePosition: "center 10%",
+  },
+  {
+    title: "Tech, Transparency & the Future of Open Ocean Fish Farms",
+    event: "TEDx Hawai'i",
+    location: "Honolulu, HI",
+    year: "2022",
+    type: "video",
+    videoId: "euG_lI95H-w",
+  },
+  {
+    title: "The Future of Ocean Farming",
+    event: "National Ocean Service",
+    year: "2023",
+    type: "video",
+    videoId: "XMwoezu_SFs",
+  },
+];
+
+const featuredTalk = talks.find((t) => t.featured);
+const pastTalks = talks.filter((t) => !t.featured);
+
+// Talk topics I cover
+const topics = [
+  {
+    category: "MCP & Agent Architecture",
+    items: [
+      "MCP Server Design & Implementation",
+      "Building AI Agents That Actually Work",
+      "When to Build vs Buy AI Infrastructure",
+    ],
+  },
+  {
+    category: "AI for Business",
+    items: [
+      "Plugging AI Into Your Business",
+      "Conversational Automation",
+      "From Prototype to Production",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Speaking | Mathew Goldsborough"
+  description="Talks and workshops on AI infrastructure, MCP, automation, and deep-tech entrepreneurship. TEDx speaker. Available for keynotes and panels."
+  og={{ website: true }}
+>
+  <!-- Hero -->
+  <section class="speaking-hero">
+    <div class="hero-label animate-in">Speaking & Workshops</div>
+    <h1 class="hero-title animate-in animate-in-delay-1">
+      Ideas worth<br />sharing.
+    </h1>
+    <div class="hero-rule animate-in animate-in-delay-2"></div>
+  </section>
+
+  <!-- Featured Talk - Full Width Image -->
+  {
+    featuredTalk && (
+      <section class="featured-section animate-in animate-in-delay-2">
+        <div class="featured-label">Latest</div>
+        <div class="featured-card">
+          <div class="featured-image">
+            <Image src={featuredTalk.image} alt={featuredTalk.title} />
+            <div class="featured-overlay">
+              <span class="featured-badge">Workshop</span>
+            </div>
+          </div>
+          <div class="featured-content">
+            <h2 class="featured-title">{featuredTalk.title}</h2>
+            <div class="featured-meta">
+              {featuredTalk.eventUrl ? (
+                <a
+                  href={featuredTalk.eventUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {featuredTalk.event}
+                </a>
+              ) : (
+                <span>{featuredTalk.event}</span>
+              )}
+              <span class="meta-dot" />
+              <span>{featuredTalk.location}</span>
+              <span class="meta-dot" />
+              <span>{featuredTalk.year}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Topics Grid -->
+  <section class="topics-section animate-in animate-in-delay-3">
+    <h2 class="section-label">Topics I Cover</h2>
+
+    <div class="topics-grid">
+      {
+        topics.map((topic) => (
+          <div class="topic-block">
+            <h3 class="topic-category">{topic.category}</h3>
+            <ul class="topic-list">
+              {topic.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Past Talks -->
+  <section class="past-section animate-in animate-in-delay-4">
+    <h2 class="section-label">Past Talks</h2>
+
+    <div class="talks-grid">
+      {
+        pastTalks.map((talk) => (
+          <a
+            href={
+              talk.type === "video"
+                ? `https://www.youtube.com/watch?v=${talk.videoId}`
+                : talk.eventUrl
+            }
+            class="talk-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="talk-thumbnail">
+              {talk.type === "video" ? (
+                <img
+                  src={`https://img.youtube.com/vi/${talk.videoId}/maxresdefault.jpg`}
+                  alt={talk.title}
+                />
+              ) : (
+                <Image
+                  src={talk.image}
+                  alt={talk.title}
+                  style={
+                    talk.imagePosition
+                      ? `object-position: ${talk.imagePosition}`
+                      : undefined
+                  }
+                />
+              )}
+              {talk.type === "video" && (
+                <div class="play-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
+                  </svg>
+                </div>
+              )}
+            </div>
+            <div class="talk-info">
+              <h3 class="talk-title">{talk.title}</h3>
+              <div class="talk-meta">
+                {talk.event} · {talk.year}
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section animate-in animate-in-delay-5">
+    <div class="cta-content">
+      <h2>Book a talk</h2>
+      <p>Available for keynotes, panels, podcasts, and hands-on workshops.</p>
+      <div class="cta-actions">
+        <a href="https://calendly.com/onlyonet" class="btn btn-accent"
+          >Schedule a Call</a
+        >
+        <a href="mailto:mat@goldsborough.io" class="btn btn-ghost"
+          >mat@goldsborough.io</a
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .speaking-hero {
+    padding: var(--space-xl) 0;
+  }
+
+  .hero-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    line-height: 0.95;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .hero-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      var(--accent-primary),
+      var(--accent-secondary),
+      transparent
+    );
+    margin-top: var(--space-lg);
+  }
+
+  /* Section Labels */
+  .section-label {
+    font-family: "League Spartan", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Featured Section */
+  .featured-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .featured-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .featured-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .featured-image {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .featured-overlay {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+  }
+
+  .featured-badge {
+    background: var(--accent-primary);
+    color: var(--bg-dark);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+  }
+
+  .featured-content {
+    padding: var(--space-lg);
+  }
+
+  .featured-title {
+    font-family: "Fraunces", serif;
+    font-size: 1.5rem;
+    margin: 0 0 var(--space-sm) 0;
+    line-height: 1.3;
+  }
+
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .meta-dot {
+    width: 3px;
+    height: 3px;
+    background: var(--text-muted);
+    border-radius: 50%;
+  }
+
+  /* Topics Grid */
+  .topics-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .topics-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .topics-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .topic-block {
+    padding: var(--space-lg);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color var(--transition-fast);
+  }
+
+  .topic-block:hover {
+    border-color: var(--accent-primary);
+  }
+
+  .topic-category {
+    font-family: "League Spartan", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-md) 0;
+    color: var(--text-primary);
+  }
+
+  .topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .topic-list li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .topic-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Past Talks Grid */
+  .past-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .talks-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 576px) {
+    .talks-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .talk-card {
+    display: block;
+    text-decoration: none;
+    transition: transform var(--transition-fast);
+  }
+
+  .talk-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .talk-thumbnail {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-surface);
+    margin-bottom: var(--space-md);
+  }
+
+  .talk-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      transform var(--transition-base),
+      opacity var(--transition-base);
+  }
+
+  .talk-card:hover .talk-thumbnail img {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+    transition: transform var(--transition-fast);
+  }
+
+  .talk-card:hover .play-icon {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .talk-title {
+    font-family: "League Spartan", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-xs) 0;
+    line-height: 1.4;
+    transition: color var(--transition-fast);
+  }
+
+  .talk-card:hover .talk-title {
+    color: var(--accent-primary);
+  }
+
+  .talk-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .cta-content {
+    text-align: center;
+    padding: var(--space-xl);
+    background: linear-gradient(
+      135deg,
+      rgba(212, 168, 83, 0.08) 0%,
+      rgba(139, 115, 85, 0.04) 100%
+    );
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .cta-content h2 {
+    font-size: 1.75rem;
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .cta-content p {
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-lg) 0;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

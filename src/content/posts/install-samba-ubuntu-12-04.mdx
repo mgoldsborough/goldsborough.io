@@ -1,0 +1,141 @@
+---
+date: 2012-05-12
+title: How to Install Samba on Ubuntu 12.04
+description: How to install and configure Samba on Ubuntu 12.04.
+---
+
+import { Image } from 'astro:assets';
+import img1 from '../../assets/images/2012-05-12/1.jpg';
+import img2 from '../../assets/images/2012-05-12/2.jpg';
+import img3 from '../../assets/images/2012-05-12/3.jpg';
+import img4 from '../../assets/images/2012-05-12/4.jpg';
+import img5 from '../../assets/images/2012-05-12/5.jpg';
+import img6 from '../../assets/images/2012-05-12/6.jpg';
+import img7 from '../../assets/images/2012-05-12/7.jpg';
+import img8 from '../../assets/images/2012-05-12/8.jpg';
+import img9 from '../../assets/images/2012-05-12/9.jpg';
+import img10 from '../../assets/images/2012-05-12/10.jpg';
+import img11 from '../../assets/images/2012-05-12/11.jpg';
+import img12 from '../../assets/images/2012-05-12/12.jpg';
+import img13 from '../../assets/images/2012-05-12/13.jpg';
+import img14 from '../../assets/images/2012-05-12/14.jpg';
+import img15 from '../../assets/images/2012-05-12/15.jpg';
+import img16 from '../../assets/images/2012-05-12/16.jpg';
+import img17 from '../../assets/images/2012-05-12/17.jpg';
+import img18 from '../../assets/images/2012-05-12/18.jpg';
+import img19 from '../../assets/images/2012-05-12/19.jpg';
+import img20 from '../../assets/images/2012-05-12/20.jpg';
+import img21 from '../../assets/images/2012-05-12/21.jpg';
+import img22 from '../../assets/images/2012-05-12/22.jpg';
+import img23 from '../../assets/images/2012-05-12/23.jpg';
+import img24 from '../../assets/images/2012-05-12/24.jpg';
+
+**Part 1: Configuring anonymous share with samba server**
+
+To install the samba package,enter the following command:
+
+    sudo apt-get install samba samba-common
+
+<Image src={img1} class="img-fluid" alt="" />
+
+Check the version of installed samba software by using this command:
+
+    smbd --version
+
+<Image src={img2} class="img-fluid" alt="" />
+
+Also install these suggested packages for samba:
+
+    sudo apt-get install python-glade2 system-config-samba
+
+<Image src={img3} class="img-fluid" alt="" />
+
+Go to your Windows machine and use this command in order to check the WORKGROUP name:
+
+    net config workstation
+
+<Image src={img4} class="img-fluid" alt="" />
+
+It will show the output, something like this:
+
+<Image src={img5} class="img-fluid" alt="" />
+
+Backup the smb.conf file, then delete it and create the new one:
+
+<Image src={img6} class="img-fluid" alt="" />
+
+Add this, in your smb.conf file (or change it according to your requirement):
+
+<Image src={img7} class="img-fluid" alt="" />
+
+Save the smb.conf file and restart the service:
+
+    sudo service smbd restart
+
+<Image src={img8} class="img-fluid" alt="" />
+
+Access the samba share from windows (where ubuntu is the name of my samba server):
+
+<Image src={img9} class="img-fluid" alt="" />
+
+wao, we are able to access the samba share successfully.
+
+<Image src={img10} class="img-fluid" alt="" />
+
+Let's try to create something, inside the share folder:
+
+<Image src={img11} class="img-fluid" alt="" />
+
+Error, we cannot create anything inside the share folder.
+
+<Image src={img12} class="img-fluid" alt="" />
+
+Check the current permission on the samba share:
+
+<Image src={img13} class="img-fluid" alt="" />
+
+Change it, in such a way that everyone can read and write it (Check it, that it is allowed in your nvironment or not):
+
+<Image src={img14} class="img-fluid" alt="" />
+
+Try to create something again, inside the share folder:
+
+<Image src={img15} class="img-fluid" alt="" />
+
+Verify the newly created file on samba server:
+
+<Image src={img16} class="img-fluid" alt="" />
+
+**Part 2: Add and manage users and groups**
+
+Add a group in your ubuntu server (in my case smbgrp):
+
+<Image src={img17} class="img-fluid" alt="" />
+
+Create a new share, set the permission on the share, add the user to the samba group and create samba password:
+
+<Image src={img18} class="img-fluid" alt="" />
+
+Add the newly created samba share in smb.conf file:
+
+<Image src={img19} class="img-fluid" alt="" />
+
+Restart the samba service and check the syntax error with _**testparm**_:
+
+<Image src={img20} class="img-fluid" alt="" />
+
+Testing from Windows Machine:
+
+<Image src={img21} class="img-fluid" alt="" />
+
+<Image src={img22} class="img-fluid" alt="" />
+
+<Image src={img23} class="img-fluid" alt="" />
+
+Verification from Ubuntu server:
+
+<Image src={img24} class="img-fluid" alt="" />
+
+Hope this post helped you as much as it helped me.
+
+Thanks to [rbgeek](http://rbgeek.wordpress.com) for this post - [Source](http://rbgeek.wordpress.com/2012/04/25/how-to-install-samba-server-on-ubuntu-12-04/)

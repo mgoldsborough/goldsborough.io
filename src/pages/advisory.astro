@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const areas = [
+  {
+    title: "AI & Automation Strategy",
+    description: "How to integrate AI into existing workflows, when to build vs buy, and avoiding common pitfalls."
+  },
+  {
+    title: "MCP & Agent Architecture",
+    description: "Designing systems that leverage Model Context Protocol and intelligent agents effectively."
+  },
+  {
+    title: "Engineering Org Design",
+    description: "Structuring and scaling technical teams, especially for hardware + software companies."
+  },
+  {
+    title: "Technical Due Diligence",
+    description: "Deep dives for investors evaluating technical teams, architecture, and AI capabilities."
+  }
+];
+---
+
+<BaseLayout
+  title="Advisory | Mathew Goldsborough"
+  description="I advise founders and leadership teams on AI strategy, MCP architecture, and scaling engineering organizations."
+  og={{ website: true }}
+>
+
+  <!-- Hero -->
+  <section class="advisory-hero">
+    <div class="hero-label animate-in">Advisory</div>
+    <h1 class="hero-title animate-in animate-in-delay-1">Let's build<br/>something.</h1>
+    <div class="hero-rule animate-in animate-in-delay-2"></div>
+  </section>
+
+  <!-- Intro -->
+  <section class="intro-section animate-in animate-in-delay-2">
+    <p class="intro-text">
+      I take on a small number of advisory relationships with founders and teams
+      working on problems I find genuinely interesting. I'm not a traditional consultant.
+      I'm actively building in this space at <a href="https://www.nimblebrain.ai">NimbleBrain</a>.
+    </p>
+  </section>
+
+  <!-- Areas -->
+  <section class="areas-section animate-in animate-in-delay-3">
+    <h2 class="section-label">Where I Can Help</h2>
+
+    <div class="areas-grid">
+      {areas.map((area, i) => (
+        <div class="area-card">
+          <span class="area-number">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="area-title">{area.title}</h3>
+          <p class="area-description">{area.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Fit Section -->
+  <section class="fit-section animate-in animate-in-delay-4">
+    <div class="fit-grid">
+      <div class="fit-block">
+        <h3 class="fit-title">Good Fit</h3>
+        <ul class="fit-list">
+          <li>Building at the intersection of AI and business operations</li>
+          <li>Navigating technical transformation at scale</li>
+          <li>Investors seeking technical diligence</li>
+        </ul>
+      </div>
+      <div class="fit-block fit-block-not">
+        <h3 class="fit-title">Not a Fit</h3>
+        <ul class="fit-list">
+          <li>Long-term staff augmentation</li>
+          <li>Ongoing maintenance contracts</li>
+          <li>Generic "digital transformation"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section animate-in animate-in-delay-5">
+    <div class="cta-content">
+      <h2>Let's talk</h2>
+      <p>
+        If you're building something interesting and want a thought partner,
+        I'd enjoy the conversation.
+      </p>
+      <div class="cta-actions">
+        <a href="https://calendly.com/onlyonet" class="btn btn-accent">Book a Conversation</a>
+        <a href="mailto:mat@goldsborough.io" class="btn btn-ghost">mat@goldsborough.io</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .advisory-hero {
+    padding: var(--space-xl) 0;
+  }
+
+  .hero-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    line-height: 0.95;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .hero-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), transparent);
+    margin-top: var(--space-lg);
+  }
+
+  /* Section Label */
+  .section-label {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Intro */
+  .intro-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 580px;
+  }
+
+  /* Areas Grid */
+  .areas-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .areas-grid {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 576px) {
+    .areas-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .area-card {
+    padding: var(--space-lg);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .area-card:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+  }
+
+  .area-number {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--accent-primary);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .area-title {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-sm) 0;
+    color: var(--text-primary);
+  }
+
+  .area-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Fit Section */
+  .fit-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .fit-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 576px) {
+    .fit-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .fit-block {
+    padding: var(--space-lg);
+    border-radius: 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+  }
+
+  .fit-block-not {
+    opacity: 0.7;
+  }
+
+  .fit-title {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .fit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .fit-list li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: var(--space-xs) 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .fit-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+  }
+
+  .fit-block-not .fit-list li::before {
+    background: var(--text-muted);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .cta-content {
+    text-align: center;
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, rgba(212, 168, 83, 0.08) 0%, rgba(139, 115, 85, 0.04) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .cta-content h2 {
+    font-size: 1.75rem;
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .cta-content p {
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-lg) 0;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

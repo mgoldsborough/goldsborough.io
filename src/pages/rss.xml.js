@@ -9,7 +9,7 @@ export async function GET(context) {
 
   return rss({
     title: 'Mathew Goldsborough',
-    description: 'Mission Driven Leader and Technologist',
+    description: 'Building AI-native infrastructure for the next generation of companies.',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

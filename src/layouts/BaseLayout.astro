@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -18,15 +19,54 @@ interface Props {
 
 const { title, description, og } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = new URL('/assets/images/MathewGoldsborough.jpg', Astro.site);
+const ogImageUrl = new URL('/assets/images/mathew-goldsborough-headshot.png', Astro.site);
 ---
 
 <!DOCTYPE html>
+<!-- Astro build -->
 <html class="h-100" lang="en" data-bs-theme="dark">
 <head>
-  <title>{title}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Preconnect to external origins for faster resource loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="/assets/fonts/LeagueSpartan-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
+
+  <!-- Theme management - single source of truth -->
+  <script is:inline>
+    (function() {
+      const getTheme = () => localStorage.getItem('theme') || 'dark';
+      const setTheme = (doc, theme) => doc.documentElement.setAttribute('data-bs-theme', theme);
+
+      // Set theme immediately on current document
+      setTheme(document, getTheme());
+
+      // Handle View Transitions - set theme on incoming document before swap
+      document.addEventListener('astro:before-swap', (e) => {
+        setTheme(e.newDocument, getTheme());
+      });
+
+      // Handle toggle clicks via delegation
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('#lightDarkToggle')) {
+          e.preventDefault();
+          const newTheme = getTheme() === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('theme', newTheme);
+          setTheme(document, newTheme);
+        }
+      });
+    })();
+  </script>
+  <ViewTransitions />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalUrl} />
 
@@ -47,12 +87,35 @@ const ogImageUrl = new URL('/assets/images/MathewGoldsborough.jpg', Astro.site);
 
   {og?.article && <meta property="og:type" content="article" />}
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mathew Goldsborough",
+      "url": "https://www.goldsborough.io",
+      "image": "https://www.goldsborough.io/assets/images/mathew-goldsborough-headshot.png",
+      "jobTitle": "Founder & Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "NimbleBrain"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/mathewgoldsborough/"
+      ]
+    })}
+  </script>
+
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍍</text></svg>">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/default.min.css">
-
+  
   <!-- Google Tag Manager -->
   <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -80,24 +143,8 @@ const ogImageUrl = new URL('/assets/images/MathewGoldsborough.jpg', Astro.site);
 
   <Footer />
 
-  <script is:inline src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js"></script>
-  <script is:inline>
-    // highlight any code on the page
-    hljs.highlightAll();
-
-    // Configure light/dark toggle
-    const toggle = document.getElementById("lightDarkToggle");
-    const root = document.querySelector('[data-bs-theme]');
-
-    toggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      if(root.getAttribute('data-bs-theme') === 'dark') {
-        root.setAttribute('data-bs-theme', 'light');
-      } else {
-        root.setAttribute('data-bs-theme', 'dark');
-      }
-    });
+  <script>
+    import 'bootstrap/dist/js/bootstrap.bundle.min.js';
   </script>
 </body>
 </html>

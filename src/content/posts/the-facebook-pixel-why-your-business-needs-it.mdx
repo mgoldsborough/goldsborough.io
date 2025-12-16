@@ -4,13 +4,21 @@ title: "The Facebook Pixel: Why your business needs it"
 description: The Facebook Pixel is the most powerful digital marketing tool businesses can use. Learn about how the Facebook Pixel can help your small business grow.
 ---
 
+import { Image } from 'astro:assets';
+import facebookLikeShareButton from '../../assets/images/2017-09-15/facebook-like-share-button.png';
+import facebookRevenueQ22017 from '../../assets/images/2017-09-15/facebook-revenue-q2-2017.png';
+import facebookAdPlacements from '../../assets/images/2017-09-15/facebook-ad-placements-1024x508.png';
+import facebookSponsoredPost from '../../assets/images/2017-09-15/facebook-sponsored-post-860x1024.png';
+import createCustomAudience from '../../assets/images/2017-09-15/create-a-custom-audience-based-on-the-facebook-pixel-878x1024.png';
+import creatingLookalikeAudience from '../../assets/images/2017-09-15/creating-a-lookalike-audience-facebook-pixel-1024x858.png';
+
 Facebook is one of the most powerful business marketing tools on the planet. Through it's advertising platform and the large scale deployment of the Facebook Pixel, Facebook has been able to develop a detailed demographic breakdown of every single one of it's 2 Billion-plus monthly active users. And yes, that's Billion with a "B."
 
 Like it or not, Facebook knows a lot about you. Your activity on Facebook - the stories you share, groups you are in, and what you post on your News Feed - are analyzed by Facebook to better understand you, what you like, and what you like to engage with. It's reach goes beyond just Facebook.com too. Facebook has built out an arsenal of widgets and tools for business, advertisers, and content publishers alike to integrate into their own websites. Each tool helps Facebook build a better profile of you as a user.
 
 The Facebook Pixel is one of the newest tools to be introduced to help study user behavior but it's not the first. Have you ever "Liked" a page or commented on a webpage using your Facebook profile? Facebook has been using these tools for almost a decade to better understand their users.
 
-<img class="img-fluid" src="/assets/images/2017-09-15/facebook-like-share-button.png" />
+<Image src={facebookLikeShareButton} class="img-fluid" alt="" />
 
 *Among other methods, Facebook targets you based on your "Likes."*
 
@@ -20,9 +28,9 @@ All of this data seems a bit Orwellian but there is a <ins>massive opportunity</
 
 Before we get into the nitty gritty on how Facebook uses the Facebook Pixel, it will help to understand how Facebook advertising works.
 
-Facebook makes the vast majority of its revenue from advertisements that people like you and I place every day. Last quarter alone Facebook made $9.3 Billion in revenue and $9.2 Billion of that came from advertisements [1]. That's <ins>over 98%</ins> of their revenue from advertisements!
+Facebook makes the vast majority of its revenue from advertisements that people like you and I place every day. Last quarter alone Facebook made $9.3 Billion in revenue and $9.2 Billion of that came from advertisements [1]. That's <ins>over 98%</ins> of their revenue from advertisements!
 
-<img class="img-fluid" src="/assets/images/2017-09-15/facebook-revenue-q2-2017.png" />
+<Image src={facebookRevenueQ22017} class="img-fluid" alt="" />
 
 With advertisement revenue being Facebook's cash cow, it's in their best interest to know everything they can about you to better serve their advertisers.
 
@@ -41,13 +49,13 @@ Unlike conventional banner advertisements, Facebook advertisements are actually 
 
 Advertisers have a few placement options when purchasing ads including directly in your feed, the right column, on your mobile device, and on Instagram. (If you didn't know, Facebook bought Instagram back in 2012 for a cool $1 Billion.)
 
-<img class="img-fluid" src="/assets/images/2017-09-15/facebook-ad-placements-1024x508.png" />
+<Image src={facebookAdPlacements} class="img-fluid" alt="" />
 
 ### Facebook advertisements placement options
 
 If you're not actively searching for ads, you might overlook them. A good way to determine if a post is an advertisement is checking right below the main link. If you see Sponsored then that post is an ad (see example image below).
 
-<img class="img-fluid" src="/assets/images/2017-09-15/facebook-sponsored-post-860x1024.png" />
+<Image src={facebookSponsoredPost} class="img-fluid" alt="" />
 
 *Facebook used the Facebook Pixel to determine my browsing habits and target me with this ad.*
 
@@ -103,7 +111,7 @@ This mountain of data makes Facebook advertising much more effective. Not only d
 
 ### Conversion Tracking
 
-The most important feature enabled by the Facebook Pixel is Conversion Tracking. A conversion is occurs when a user performs an action on your site that you define. A conversion can be literally anything you want but common conversions include:
+The most important feature enabled by the Facebook Pixel is Conversion Tracking. A conversion is occurs when a user performs an action on your site that you define. A conversion can be literally anything you want but common conversions include:
 
 * Adding items to a cart
 * Completing a purchase
@@ -115,7 +123,7 @@ Better still, a number of popular online tools support the Facebook Pixel out of
 
 * **eCommerce**: Shopify, WooCommerce
 * **Blogging**: Wix, Weebly, Squarespace
-* **CMS**: Wordpress, Joomla, Drupal
+* **CMS**: Wordpress, Joomla, Drupal
 
 You can can also implement your own custom conversions but these might require configuration and coding.
 
@@ -136,9 +144,9 @@ I don't know about you, but I'd pick #2 everyday of the week. A user who has rec
 * More likely to view me as an authority.
 * More likely to want to buy something from me.
 
-Since the Facebook Pixel can detect users who visit your site and are simultaneously logged into Facebook, building a list of users who visited in the past 30 days is a trivial task. Facebook provides you the ability to advertise to this specific group of users through a feature called Custom Audiences.
+Since the Facebook Pixel can detect users who visit your site and are simultaneously logged into Facebook, building a list of users who visited in the past 30 days is a trivial task. Facebook provides you the ability to advertise to this specific group of users through a feature called Custom Audiences.
 
-<img class="img-fluid" src="/assets/images/2017-09-15/create-a-custom-audience-based-on-the-facebook-pixel-878x1024.png" />
+<Image src={createCustomAudience} class="img-fluid" alt="" />
 
 *Creating a Custom Audience audience based on website traffic.*
 
@@ -150,7 +158,7 @@ people who visited a specific page and took a specific action.
 
 You can also combine a number of these rules for some really targeted advertisements.
 
-World renowned marketer [Dr. Jeffrey Lant](https://www.facebook.com/business/a/facebook-pixel) originally proposed that you need to reach your potential customer seven times before they will buy anything. While seven may not be a hard and fast rule, the key takeaway is that you must reengage with your users on a frequent basis. Custom Audiences via the Facebook Pixel enables you to do just that.
+World renowned marketer [Dr. Jeffrey Lant](https://www.facebook.com/business/a/facebook-pixel) originally proposed that you need to reach your potential customer seven times before they will buy anything. While seven may not be a hard and fast rule, the key takeaway is that you must reengage with your users on a frequent basis. Custom Audiences via the Facebook Pixel enables you to do just that.
 
 ### Lookalike Audiences
 
@@ -166,7 +174,7 @@ Since the Facebook Pixel enables Facebook to track users, regardless of how they
 
 Get the picture?
 
-<img class="img-fluid" src="/assets/images/2017-09-15/creating-a-lookalike-audience-facebook-pixel-1024x858.png" />
+<Image src={creatingLookalikeAudience} class="img-fluid" alt="" />
 
 *Creating a Lookalike Audience of users who Digital Business Tactics within the last 90 days.*
 

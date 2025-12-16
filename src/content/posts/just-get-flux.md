@@ -18,4 +18,4 @@ monitors at night although I haven't had a chance to read through it all. All I 
 *f.lux* works on Windows, Mac and Linux. Stop waiting and [just get f.lux](http://justgetflux.com)!
 
 **Update:** If you're a Ubuntu user I've posted a how-to on installing *f.lux* on
-Ubuntu 13.04 64-bit with multi-monitor support [here]({% post_url 2013-10-28-install-flux-ubuntu-13-04-64-bit %}).
+Ubuntu 13.04 64-bit with multi-monitor support [here](/install-flux-ubuntu-13-04-64-bit/).
