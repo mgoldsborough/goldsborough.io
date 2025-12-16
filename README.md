@@ -1,36 +1,16 @@
 # goldsborough.io
 
-Run locally
+Personal website built with [Astro](https://astro.build).
 
-```
-bundle exec jekyll serve --livereload
-```
+## Development
 
-## Setup
-
-Install ruby
-
-```
-brew install chruby ruby-install
-ruby-install ruby
+```bash
+npm install
+npm run dev
 ```
 
-Configure shell
+## Build
 
-```
-echo "source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh" >> ~/.zshrc
-echo "source $(brew --prefix)/opt/chruby/share/chruby/auto.sh" >> ~/.zshrc
-echo "chruby ruby-3.3.0" >> ~/.zshrc
-```
-
-Install jekyll etc.
-
-```
-gem install jekyll bundler
-```
-
-Install dependencies
-
-```
-bundle install
+```bash
+npm run build
 ```

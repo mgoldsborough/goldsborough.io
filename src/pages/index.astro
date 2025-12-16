@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+
+// Sort posts by date descending
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Helper to format date like Jekyll's "%-d %B %Y"
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  });
+};
+---
+
+<BaseLayout
+  title="Mathew Goldsborough | Mission Driven Leader and Technologist"
+  description="Mathew Goldsborough is a mission driven leader, coder, and technologist. Awarded Fast Company's Most Innovative in 2023 and a TEDx Speaker."
+  og={{ website: true }}
+>
+  <h1 class="py-3">Posts</h1>
+
+  {posts.map((post) => (
+    <ul class="list-unstyled">
+      <li>
+        <span class="post-meta">{formatDate(post.data.date)}</span>
+        <span class="post-title">
+          <h3>
+            <a href={`/${post.id}`}>{post.data.title}</a>
+          </h3>
+        </span>
+      </li>
+    </ul>
+  ))}
+</BaseLayout>
