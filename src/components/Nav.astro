@@ -35,7 +35,7 @@ const { currentPath } = Astro.props;
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a
             class={`nav-link nav-link-animated${currentPath === "/" ? " active" : ""}`}
@@ -130,11 +130,39 @@ const { currentPath } = Astro.props;
 </nav>
 
 <style>
-  /* Nav brand hover */
+  /* Nav font settings - reset body's line-height */
+  .navbar {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-variation-settings: 'opsz' 12;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  /* Reset list margin inherited from global styles */
+  .navbar-nav .nav-item {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* Ensure icons are centered vertically */
+  .navbar-nav .nav-icons {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .navbar-nav .icon-group {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Nav brand */
   .navbar-brand {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    line-height: 1.5;
     transition: opacity var(--transition-fast);
   }
 
@@ -154,29 +182,15 @@ const { currentPath } = Astro.props;
     font-weight: 500;
   }
 
-  /* Animated nav links with underline */
+  /* Animated nav links with underline - using box-shadow to not affect layout */
   .nav-link-animated {
-    position: relative;
-    overflow: hidden;
+    box-shadow: inset 0 0 0 0 var(--accent-primary);
+    transition: box-shadow var(--transition-base), color var(--transition-fast);
   }
 
-  .nav-link-animated::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--accent-primary);
-    transition:
-      width var(--transition-base),
-      left var(--transition-base);
-  }
-
-  .nav-link-animated:hover::after,
-  .nav-link-animated.active::after {
-    width: 100%;
-    left: 0;
+  .nav-link-animated:hover,
+  .nav-link-animated.active {
+    box-shadow: inset 0 -2px 0 0 var(--accent-primary);
   }
 
   .nav-link-animated.active {
@@ -188,6 +202,8 @@ const { currentPath } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    top: 2px;
     transition:
       transform var(--transition-fast),
       color var(--transition-fast);

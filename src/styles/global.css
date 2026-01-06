@@ -1,9 +1,6 @@
 /* Bootstrap - self-hosted for better performance */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-/* Display font - Fraunces for headlines (soft, wonky character) */
-/* Note: Fraunces is loaded via preload link in BaseLayout.astro for better performance */
-
 /* ========================================
    CUSTOM PROPERTIES (Color Palette)
    ======================================== */
@@ -18,8 +15,8 @@
   --bg-dark-elevated: #161616;
   --bg-dark-surface: #1a1a1a;
   --text-dark-primary: #f5f5f5;
-  --text-dark-secondary: #a0a0a0;
-  --text-dark-muted: #6b6b6b;
+  --text-dark-secondary: #c8c8c8;    /* Brighter for better readability */
+  --text-dark-muted: #888888;        /* Raised from #6b6b6b for better contrast */
   --border-dark: rgba(255, 255, 255, 0.08);
 
   /* Neutrals for light theme */
@@ -27,8 +24,8 @@
   --bg-light-elevated: #ffffff;
   --bg-light-surface: #f0f0f0;
   --text-light-primary: #1a1a1a;
-  --text-light-secondary: #4a4a4a;
-  --text-light-muted: #8a8a8a;
+  --text-light-secondary: #3a3a3a;    /* Darker for better readability */
+  --text-light-muted: #666666;        /* Adjusted for better contrast */
   --border-light: rgba(0, 0, 0, 0.08);
 
   /* Animation timing */
@@ -45,42 +42,52 @@
 }
 
 /* ========================================
-   FONTS
+   TYPOGRAPHY
    ======================================== */
 
-/* Body font - League Spartan */
-@font-face {
-  font-family: 'League Spartan';
-  font-weight: 300;
-  font-display: swap;
-  src: url("/assets/fonts/LeagueSpartan-Light.ttf") format('truetype');
+/* Newsreader - single font family for entire site
+   Variable font with optical sizing (opsz 6-72) */
+
+body {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.125rem;           /* 18px base for comfortable reading */
+  line-height: 1.7;              /* Generous line height */
+  letter-spacing: 0.01em;        /* Slight opening for readability */
+  font-variation-settings: 'opsz' 16;
 }
 
-@font-face {
-  font-family: 'League Spartan';
-  font-weight: 400;
-  font-display: swap;
-  src: url("/assets/fonts/LeagueSpartan-Regular.ttf") format('truetype');
-}
-
-@font-face {
-  font-family: 'League Spartan';
-  font-weight: 700;
-  font-display: swap;
-  src: url("/assets/fonts/LeagueSpartan-Bold.ttf") format('truetype');
-}
-
-/* Typography assignments */
-h1, h2, h3 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 400;
-  font-variation-settings: 'opsz' 72;
-  letter-spacing: -0.01em;
+/* Headlines - use larger optical size */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 600;
   line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 72;
 }
 
-h4, h5, h6, p, span, a, li, td, th, label, input, textarea, button {
-  font-family: 'League Spartan', sans-serif;
+h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); margin-top: 2em; }
+h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); margin-top: 1.5em; }
+h4 { font-size: 1.125rem; }
+
+/* Body elements inherit from body */
+p, span, a, li, td, th, label, input, textarea, button {
+  font-family: inherit;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1.5em;
+}
+
+/* Lists */
+li {
+  margin-bottom: 0.5em;
+}
+
+/* Small text / UI elements - use smaller optical size */
+small, .text-sm, .post-meta, .section-heading {
+  font-variation-settings: 'opsz' 8;
 }
 
 /* ========================================
@@ -277,7 +284,6 @@ main p a:hover, main li a:hover {
 }
 
 .post-list-item h3 {
-  font-family: 'League Spartan', sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
   margin: 0;
@@ -296,12 +302,11 @@ main p a:hover, main li a:hover {
    SECTION HEADINGS
    ======================================== */
 .section-heading {
-  font-family: 'League Spartan', sans-serif;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-bottom: var(--space-lg);
   display: flex;
   align-items: center;
@@ -393,22 +398,223 @@ main p a:hover, main li a:hover {
 }
 
 /* ========================================
-   POST STYLES
+   ARTICLE / PROSE STYLES
+   Based on vertical rhythm (1.5rem baseline)
    ======================================== */
+
+/* Article container */
+.post {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+/* Post header */
+.post > .post-header {
+  margin-bottom: 3rem;
+}
+
 .post > .post-header > .post-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 400;
-  font-variation-settings: 'opsz' 72;
-  font-size: clamp(2rem, 6vw, 3rem);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
 }
 
 .post > .post-header > .post-meta {
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+}
+
+/* Prose content */
+.post-content {
+  color: var(--text-secondary);
+}
+
+/* Headings in prose - more space above, less below */
+.post-content h2 {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  color: var(--text-primary);
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-content h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.375rem);
+  color: var(--text-primary);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.post-content h4 {
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* First element after header needs no top margin */
+.post-content > *:first-child {
+  margin-top: 0;
+}
+
+/* Paragraphs */
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+/* Strong/bold - ensure visibility */
+.post-content strong,
+.post-content b {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Lists */
+.post-content ul,
+.post-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+.post-content li:last-child {
+  margin-bottom: 0;
+}
+
+/* Nested lists */
+.post-content ul ul,
+.post-content ol ol,
+.post-content ul ol,
+.post-content ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Code - inline */
+.post-content code {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  font-size: 0.9em;
+  background: var(--bg-surface);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* Code - blocks */
+.post-content pre {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.post-content pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* Blockquotes */
+.post-content blockquote {
+  border-left: 3px solid var(--accent-primary);
+  margin: 2rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Horizontal rules - section dividers */
+.post-content hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 3rem 0;
+}
+
+/* Tables */
+.post-content table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.post-content th,
+.post-content td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.post-content th {
+  background: var(--bg-surface);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.post-content tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Images */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+/* Links in prose */
+.post-content a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.post-content a:hover {
+  color: var(--accent-primary-hover);
+}
+
+/* Post footer - hide any trailing hr */
+.post > hr {
+  display: none;
+}
+
+/* Post navigation */
+.post-nav {
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.post-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.post-nav a:hover {
+  color: var(--accent-primary);
 }
 
 /* ========================================
@@ -427,6 +633,55 @@ footer {
 
 .bg-accent {
   background-color: var(--accent-primary);
+}
+
+/* ========================================
+   MANIFESTO / PRINCIPLES CALLOUT
+   ======================================== */
+.manifesto {
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.08), rgba(139, 115, 85, 0.04));
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  border-radius: 8px;
+  padding: 2rem 2rem 1.5rem;
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+.manifesto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 8px 8px 0 0;
+}
+
+.manifesto h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.manifesto p {
+  margin-bottom: 1.25rem;
+}
+
+.manifesto p:last-child {
+  margin-bottom: 0;
+}
+
+.manifesto strong {
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
 }
 
 /* Noise texture overlay (optional - adds subtle grain) */

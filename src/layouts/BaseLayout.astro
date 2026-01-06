@@ -14,12 +14,17 @@ interface Props {
       last_name: string;
     };
     article?: boolean;
+    slug?: string;
   };
 }
 
 const { title, description, og } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = new URL('/assets/images/mathew-goldsborough-headshot.png', Astro.site);
+
+// Use dynamic OG image for articles, headshot for everything else
+const ogImageUrl = og?.article && og?.slug
+  ? new URL(`/og/${og.slug}.png`, Astro.site)
+  : new URL('/assets/images/mathew-goldsborough-headshot.png', Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -31,15 +36,14 @@ const ogImageUrl = new URL('/assets/images/mathew-goldsborough-headshot.png', As
   <title>{title}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Preconnect to external origins for faster resource loading -->
+  <!-- Preconnect for external resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
 
-  <!-- Preload critical fonts -->
-  <link rel="preload" href="/assets/fonts/LeagueSpartan-Regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" as="style">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
+  <!-- Newsreader - single font family for entire site -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap">
 
   <!-- Theme management - single source of truth -->
   <script is:inline>
