@@ -24,9 +24,9 @@ const logos = [
   description="Founder & CEO of NimbleBrain. Previously co-founded Forever Oceans. TEDx speaker. 4 patents in autonomous systems."
   og={{ profile: { first_name: 'Mathew', last_name: 'Goldsborough' } }}
 >
-  <section class="hero-section">
-    <h1 class="animate-in">About</h1>
-    <hr class="accent-line animate-in animate-in-delay-1" />
+  <section class="page-hero">
+    <h1 class="hero-title animate-in">About</h1>
+    <div class="hero-accent animate-in animate-in-delay-1"></div>
   </section>
 
   <!-- What I'm Building -->
@@ -48,6 +48,25 @@ const logos = [
     <p>
       <a href="https://www.nimblebrain.ai">Learn more about NimbleBrain →</a>
     </p>
+  </section>
+
+  <!-- Focus Areas -->
+  <section class="content-section animate-in animate-in-delay-2">
+    <h2 class="section-heading">Focus Areas</h2>
+    <div class="focus-list">
+      <div class="focus-item">
+        <span class="focus-marker"></span>
+        <span>MCP & Agent Architecture</span>
+      </div>
+      <div class="focus-item">
+        <span class="focus-marker"></span>
+        <span>Conversational Automation</span>
+      </div>
+      <div class="focus-item">
+        <span class="focus-marker"></span>
+        <span>AI for Business Operations</span>
+      </div>
+    </div>
   </section>
 
   <!-- Track Record -->
@@ -174,6 +193,32 @@ const logos = [
   .content-section p {
     color: var(--text-secondary);
     line-height: 1.8;
+  }
+
+  /* Focus Areas */
+  .focus-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-xl);
+  }
+
+  .focus-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .focus-marker {
+    width: 5px;
+    height: 5px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .focus-item span:last-child {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
   }
 
   /* Experience Items */

@@ -224,25 +224,43 @@ main p a:hover, main li a:hover {
 }
 
 /* ========================================
-   HOMEPAGE HERO
+   PAGE HERO (Global)
    ======================================== */
-.hero-section {
-  position: relative;
-  padding: var(--space-xl) 0;
+.page-hero {
+  padding: var(--space-xl) 0 var(--space-lg);
+  margin-bottom: var(--space-lg);
 }
 
-.hero-section h1 {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+.hero-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-primary);
   margin-bottom: var(--space-md);
 }
 
-.hero-section .lead {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  max-width: 540px;
+.hero-title {
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  line-height: 0.95;
+  margin: 0 0 var(--space-lg) 0;
+  font-weight: 400;
 }
 
-/* Accent line */
+.hero-accent {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+.hero-bio {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-top: var(--space-lg);
+}
+
+/* Legacy accent-line (for About page hr) */
 .accent-line {
   width: 60px;
   height: 3px;

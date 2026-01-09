@@ -26,38 +26,59 @@ const formatDate = (date: Date) => {
   description="Founder & CEO of NimbleBrain, building conversational automation. Previously co-founded Forever Oceans. TEDx speaker. Fast Company Most Innovative (2023)."
   og={{ website: true }}
 >
-  <!-- Hero Section - Editorial Style -->
-  <section class="hero">
-    <div class="hero-eyebrow animate-in">Founder & Engineer</div>
-    <h1 class="hero-title">Mathew<br/>Goldsborough</h1>
-    <div class="hero-rule animate-in animate-in-delay-1"></div>
-  </section>
-
-  <!-- About Strip -->
-  <section class="about-strip animate-in animate-in-delay-1">
-    <div class="about-content">
-      <p class="about-text">
-        Building <a href="https://www.nimblebrain.ai">NimbleBrain</a>, a conversational automation platform.
-        Previously co-founded Forever Oceans, scaling autonomous ocean farming globally.
-        <a href="/speaking">TEDx speaker</a>. Fast Company Most Innovative. 4 patents.
-      </p>
-    </div>
+  <!-- Hero Section -->
+  <section class="page-hero">
+    <div class="hero-label animate-in">Founder & Engineer</div>
+    <h1 class="hero-title animate-in animate-in-delay-1">Mathew<br/>Goldsborough</h1>
+    <div class="hero-accent animate-in animate-in-delay-2"></div>
+    <p class="hero-bio animate-in animate-in-delay-3">
+      Building <a href="https://www.nimblebrain.ai">NimbleBrain</a>, a conversational automation platform.
+      Previously co-founded Forever Oceans, scaling autonomous ocean farming globally.
+      <a href="/speaking">TEDx speaker</a>. Fast Company Most Innovative. 4 patents.
+    </p>
   </section>
 
   <!-- Two Column Layout -->
-  <div class="content-grid animate-in animate-in-delay-2">
+  <div class="content-grid animate-in animate-in-delay-4">
 
-    <!-- Writing Column -->
-    <section class="writing-column">
+    <!-- Left Column: Latest Talk -->
+    <section class="left-column">
+      <h2 class="column-heading">Latest Talk</h2>
+      <a
+        href="https://www.youtube.com/watch?v=45FgK9169zU"
+        class="talk-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="talk-thumbnail">
+          <img
+            src="https://img.youtube.com/vi/45FgK9169zU/maxresdefault.jpg"
+            alt="Orchestrating Intelligence with MCP"
+          />
+          <div class="play-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="talk-info">
+          <span class="talk-title">Orchestrating Intelligence with MCP</span>
+          <span class="talk-meta">The Context · 2025</span>
+        </div>
+      </a>
+      <a href="/speaking" class="see-all">More talks</a>
+    </section>
+
+    <!-- Right Column: Writing -->
+    <section class="right-column">
       <h2 class="column-heading">Writing</h2>
 
       <ul class="writing-list">
         {featuredPosts.slice(0, 5).map((post, i) => (
           <li class="writing-item">
             <a href={`/${post.id}`} class="writing-link">
-              <span class="writing-number">{String(i + 1).padStart(2, '0')}</span>
               <span class="writing-title">{post.data.title}</span>
-              <span class="writing-date">{formatDate(post.data.date)}</span>
             </a>
           </li>
         ))}
@@ -68,77 +89,11 @@ const formatDate = (date: Date) => {
       )}
     </section>
 
-    <!-- Focus Column -->
-    <section class="focus-column">
-      <h2 class="column-heading">Focus Areas</h2>
-
-      <div class="focus-list">
-        <div class="focus-item">
-          <span class="focus-marker"></span>
-          <span class="focus-text">MCP & Agent Architecture</span>
-        </div>
-        <div class="focus-item">
-          <span class="focus-marker"></span>
-          <span class="focus-text">Conversational Automation</span>
-        </div>
-        <div class="focus-item">
-          <span class="focus-marker"></span>
-          <span class="focus-text">AI for Business Operations</span>
-        </div>
-      </div>
-
-      <a href="/speaking" class="see-all">Speaking & Workshops</a>
-    </section>
-
   </div>
 
 </BaseLayout>
 
 <style>
-  /* Hero - Editorial Magazine Style */
-  .hero {
-    padding: var(--space-xl) 0;
-    position: relative;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--accent-primary);
-    margin-bottom: var(--space-md);
-  }
-
-  .hero-title {
-    font-size: clamp(3rem, 12vw, 5.5rem);
-    line-height: 0.95;
-    margin: 0;
-    font-weight: 400;
-  }
-
-  .hero-rule {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), transparent);
-    margin-top: var(--space-lg);
-  }
-
-  /* About Strip */
-  .about-strip {
-    padding: var(--space-lg) 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: var(--space-xl);
-  }
-
-  .about-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    margin: 0;
-    max-width: 600px;
-  }
-
   /* Content Grid */
   .content-grid {
     display: grid;
@@ -148,25 +103,93 @@ const formatDate = (date: Date) => {
 
   @media (min-width: 768px) {
     .content-grid {
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: 1.4fr 1fr;
       gap: calc(var(--space-xl) * 1.5);
     }
   }
 
-  /* Column Headings */
+  /* Column Headings - Gold left accent */
   .column-heading {
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--text-secondary);
+    color: var(--text-muted);
     margin-bottom: var(--space-lg);
-    padding-bottom: var(--space-sm);
-    border-bottom: 1px solid var(--border);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--accent-primary);
     font-variation-settings: 'opsz' 8;
   }
 
-  /* Writing List */
+  /* Left Column: Talk */
+  .talk-link {
+    display: block;
+    text-decoration: none;
+    margin-bottom: var(--space-md);
+  }
+
+  .talk-thumbnail {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .talk-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity var(--transition-fast), transform var(--transition-base);
+  }
+
+  .talk-link:hover .talk-thumbnail img {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .talk-link:hover .play-button {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  .talk-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-sm);
+  }
+
+  .talk-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .talk-link:hover .talk-title {
+    color: var(--accent-primary);
+  }
+
+  .talk-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+
+  /* Right Column: Writing */
   .writing-list {
     list-style: none;
     padding: 0;
@@ -174,70 +197,30 @@ const formatDate = (date: Date) => {
   }
 
   .writing-item {
-    border-bottom: 1px solid var(--border);
+    /* No borders */
   }
 
   .writing-link {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: var(--space-md);
-    align-items: baseline;
-    padding: var(--space-md) 0;
+    display: block;
+    padding: var(--space-sm) 0;
     text-decoration: none;
-    transition: all var(--transition-fast);
+    transition: padding-left var(--transition-fast);
   }
 
   .writing-link:hover {
     padding-left: var(--space-sm);
   }
 
-  .writing-number {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
   .writing-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-primary);
+    line-height: 1.4;
     transition: color var(--transition-fast);
   }
 
   .writing-link:hover .writing-title {
     color: var(--accent-primary);
-  }
-
-  .writing-date {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  /* Focus Column */
-  .focus-list {
-    margin-bottom: var(--space-lg);
-  }
-
-  .focus-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-sm) 0;
-  }
-
-  .focus-marker {
-    width: 6px;
-    height: 6px;
-    background: var(--accent-primary);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .focus-text {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
   }
 
   /* See All Link */
@@ -246,9 +229,7 @@ const formatDate = (date: Date) => {
     align-items: center;
     gap: var(--space-sm);
     font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-weight: 500;
     color: var(--text-muted);
     text-decoration: none;
     transition: color var(--transition-fast);

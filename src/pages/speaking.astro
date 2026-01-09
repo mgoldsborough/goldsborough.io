@@ -7,19 +7,26 @@ import blueStartupsImg from "../assets/images/mathew_goldsborough_blue_startups_
 // Speaking engagements - chronologically ordered
 const talks = [
   {
+    title: "Orchestrating Intelligence with MCP",
+    event: "The Context",
+    year: "2025",
+    type: "video",
+    videoId: "45FgK9169zU",
+    featured: true,
+  },
+  {
     title: "Plugging AI Into Your Business: A Hands-On Tour of MCP",
     event: "Honolulu Tech Week",
     eventUrl: "https://honolulutechweek.com/",
     location: "Honolulu, HI",
-    year: "2024",
+    year: "2025",
     type: "workshop",
     image: honoluluTechWeekImg,
-    featured: true,
   },
   {
     title: "The CX Files: CEO Panel on AI Agents",
     event: "Podcast",
-    year: "2024",
+    year: "2025",
     type: "video",
     videoId: "Rssgodm8aCo",
   },
@@ -28,7 +35,7 @@ const talks = [
     event: "Blue Startups",
     eventUrl: "https://www.bluestartups.com/",
     location: "Honolulu, HI",
-    year: "2024",
+    year: "2025",
     type: "image",
     image: blueStartupsImg,
     imagePosition: "center 10%",
@@ -80,12 +87,12 @@ const topics = [
   og={{ website: true }}
 >
   <!-- Hero -->
-  <section class="speaking-hero">
+  <section class="page-hero">
     <div class="hero-label animate-in">Speaking & Workshops</div>
     <h1 class="hero-title animate-in animate-in-delay-1">
       Ideas worth<br />sharing.
     </h1>
-    <div class="hero-rule animate-in animate-in-delay-2"></div>
+    <div class="hero-accent animate-in animate-in-delay-2"></div>
   </section>
 
   <!-- Featured Talk - Full Width Image -->
@@ -93,60 +100,60 @@ const topics = [
     featuredTalk && (
       <section class="featured-section animate-in animate-in-delay-2">
         <div class="featured-label">Latest</div>
-        <div class="featured-card">
+        <a
+          class="featured-card"
+          href={featuredTalk.type === "video" ? `https://www.youtube.com/watch?v=${featuredTalk.videoId}` : featuredTalk.eventUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div class="featured-image">
-            <Image src={featuredTalk.image} alt={featuredTalk.title} />
+            {featuredTalk.type === "video" ? (
+              <img
+                src={`https://img.youtube.com/vi/${featuredTalk.videoId}/maxresdefault.jpg`}
+                alt={featuredTalk.title}
+              />
+            ) : (
+              <Image src={featuredTalk.image} alt={featuredTalk.title} />
+            )}
             <div class="featured-overlay">
-              <span class="featured-badge">Workshop</span>
+              <span class="featured-badge">{featuredTalk.type === "video" ? "Video" : "Workshop"}</span>
             </div>
+            {featuredTalk.type === "video" && (
+              <div class="play-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
+                </svg>
+              </div>
+            )}
           </div>
           <div class="featured-content">
             <h2 class="featured-title">{featuredTalk.title}</h2>
             <div class="featured-meta">
-              {featuredTalk.eventUrl ? (
-                <a
-                  href={featuredTalk.eventUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {featuredTalk.event}
-                </a>
-              ) : (
-                <span>{featuredTalk.event}</span>
+              <span>{featuredTalk.event}</span>
+              {featuredTalk.location && (
+                <>
+                  <span class="meta-dot" />
+                  <span>{featuredTalk.location}</span>
+                </>
               )}
-              <span class="meta-dot" />
-              <span>{featuredTalk.location}</span>
               <span class="meta-dot" />
               <span>{featuredTalk.year}</span>
             </div>
           </div>
-        </div>
+        </a>
       </section>
     )
   }
 
-  <!-- Topics Grid -->
-  <section class="topics-section animate-in animate-in-delay-3">
-    <h2 class="section-label">Topics I Cover</h2>
-
-    <div class="topics-grid">
-      {
-        topics.map((topic) => (
-          <div class="topic-block">
-            <h3 class="topic-category">{topic.category}</h3>
-            <ul class="topic-list">
-              {topic.items.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
   <!-- Past Talks -->
-  <section class="past-section animate-in animate-in-delay-4">
+  <section class="past-section animate-in animate-in-delay-3">
     <h2 class="section-label">Past Talks</h2>
 
     <div class="talks-grid">
@@ -206,6 +213,26 @@ const topics = [
     </div>
   </section>
 
+  <!-- Topics Grid -->
+  <section class="topics-section animate-in animate-in-delay-4">
+    <h2 class="section-label">Topics I Cover</h2>
+
+    <div class="topics-grid">
+      {
+        topics.map((topic) => (
+          <div class="topic-block">
+            <h3 class="topic-category">{topic.category}</h3>
+            <ul class="topic-list">
+              {topic.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section animate-in animate-in-delay-5">
     <div class="cta-content">
@@ -224,39 +251,6 @@ const topics = [
 </BaseLayout>
 
 <style>
-  /* Hero */
-  .speaking-hero {
-    padding: var(--space-xl) 0;
-  }
-
-  .hero-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--accent-primary);
-    margin-bottom: var(--space-md);
-  }
-
-  .hero-title {
-    font-size: clamp(2.5rem, 10vw, 4.5rem);
-    line-height: 0.95;
-    margin: 0;
-    font-weight: 400;
-  }
-
-  .hero-rule {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      var(--accent-primary),
-      var(--accent-secondary),
-      transparent
-    );
-    margin-top: var(--space-lg);
-  }
-
   /* Section Labels */
   .section-label {
     font-size: 0.7rem;
@@ -285,10 +279,31 @@ const topics = [
   }
 
   .featured-card {
+    display: block;
+    text-decoration: none;
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .featured-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-primary);
+  }
+
+  .featured-card:hover .featured-image img {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+
+  .featured-card:hover .play-icon {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .featured-card:hover .featured-title {
+    color: var(--accent-primary);
   }
 
   .featured-image {
@@ -301,6 +316,7 @@ const topics = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform var(--transition-base), opacity var(--transition-base);
   }
 
   .featured-overlay {
