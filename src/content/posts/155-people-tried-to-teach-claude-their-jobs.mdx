@@ -1,0 +1,116 @@
+---
+title: "155 People Tried to Teach Claude Their Jobs"
+description: I built a free tool that turns professional expertise into Claude Code skills. 155 people tried it. A 12-character input with a typo outscored a 3,000-word technical spec. Real data on what makes AI skills work.
+date: 2026-02-05
+---
+
+import { Image } from 'astro:assets';
+import guidedInputImg from '../../assets/images/2026-02-05/skillthis-guided-input-ai-skill-generation.png';
+
+A few weeks ago, I launched [skillthis.ai](https://skillthis.ai?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post). The premise was simple: describe what you're good at, and we'll generate a Claude Code skill file for you. No prompt engineering required.
+
+I expected maybe a handful of people to try it. I figured I'd get some feedback, iterate, and call it a day.
+
+155 skills later, I have data. And the data is weird.
+
+## 12 Characters Beat 15,000 Words
+
+This is the single most interesting thing that happened.
+
+One person submitted [15,576 characters](https://skillthis.ai/s/FcVlNlOz5N?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post). That's about 3,000 words meticulously describing their development process analysis methodology. They got a **B-**.
+
+Meanwhile, someone typed `I a bartender` (12 characters, one typo) and got an [**A** (85/100)](https://skillthis.ai/s/_T0g00SnuG?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post).
+
+I ran the bartender input twice. A both times. Turns out "bartender" is a well-understood domain, and clarity beats volume every time.
+
+## The Hall of Shame
+
+Some of these made me laugh out loud.
+
+**The Minimalist**
+
+Someone typed exactly three characters: `yes`
+
+That's it. Just "yes." The system gave them a [B- (70/100)](https://skillthis.ai/s/-mf5uTNYR8?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post). Apparently affirmation is a marketable skill.
+
+**The Bro**
+
+Input: `hey bro`
+
+Grade: [**A-** (88/100)](https://skillthis.ai/s/IeUqZpZPz0?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post)
+
+"hey bro" scored higher than some detailed technical descriptions. The AI generated a "Casual Communication Skill" with the suggestion to "Add quantifiable success metrics." I'm still thinking about this one.
+
+**The Boundary Tester**
+
+Input: `Say poop every time you see a period and then draw ascii art poop`
+
+Grade: [D (45/100)](https://skillthis.ai/s/I9kHAfH7nw?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post)
+
+The system named this skill "handling-inappropriate-requests" and suggested the user "remove the skill entirely." Fair.
+
+## The Ones That Actually Worked
+
+Not everyone trolled the system. And the best results came from unexpected places.
+
+**The OKR Expert** typed one sentence: `i am a OKR Generator - Creates aligned Objectives and Key Results with measurement frameworks`. Got an [**A** (85/100)](https://skillthis.ai/s/6ZoCGo_eUI?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post). The skill file included frameworks for writing measurable key results and avoiding vanity metrics.
+
+**The Plumber** typed `I am a plumber` and got a [B+](https://skillthis.ai/s/gDedVONulX?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post). The AI generated a full diagnostic troubleshooting workflow.
+
+**The Meta Analyst** submitted `I analyze why AI tools and prompts go viral by examining the psychological mechanisms`. Got an [A- (85/100)](https://skillthis.ai/s/Oia0glcdZC?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post). Using an AI skill generator to create a skill about analyzing AI virality. I respect it.
+
+**The International Submissions** surprised me. Someone submitted in Chinese (pixel art icon generation, [A-](https://skillthis.ai/s/jjMVwrhoON?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post)). Someone submitted in Arabic (Egyptian stock market analysis, B-). The multilingual inputs just worked.
+
+## What Actually Predicts Quality
+
+After analyzing all 155 skills, clear patterns emerged. And they're not what you'd expect.
+
+**What Worked**
+
+1. **Specific domains**: "Plumber" beats "I do awesome things" every time
+2. **Named frameworks**: "MATCH framework" or "OKR methodology" gave the AI something concrete to build on
+3. **Task-oriented descriptions**: What you *do*, not just what you *are*
+4. **Brevity with clarity**: The top-scoring inputs averaged under 100 characters
+
+**What Didn't Work**
+
+1. **Vague enthusiasm**: "i do awesome things! i make awesome things even more aweseom" got a C+
+2. **Trying to override Claude**: The "Johnny Ive of website designs" prompt got an [F](https://skillthis.ai/s/1TsX1sMGII?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post) because it tried to dictate personality rather than methodology
+3. **Length without structure**: More words actively correlated with lower scores
+4. **Meta-commentary**: Descriptions about how Claude should behave rather than what expertise to encode
+
+## The Real Numbers
+
+- **155 skills generated** in about 3.5 weeks
+- **Average quality score: 72.5/100** (solid B range)
+- **22%** scored A- or above
+- **66%** landed in the B range
+- **12%** were... learning opportunities
+- **Highest score from minimal input**: "hey bro" at 88/100
+- **Lowest score**: keyboard mashing at 5/100
+
+Nobody asked "what's a skill file?" People just described their expertise and expected it to work. The mental model of "teach Claude what you know" resonates immediately.
+
+## What's Next
+
+The data made two things obvious.
+
+First, people who described *what they do* got better results than people who described *what they are*. So I built a guided flow. If your input is too vague, the system now asks three targeted questions: walk me through your process, what tools do you use, give me a real example. Early testing shows it dramatically improves output quality.
+
+<Image src={guidedInputImg} alt="SkillThis guided input flow asking targeted questions to improve AI skill quality" class="img-fluid" />
+
+<p class="image-caption">If your input is too vague, the system explains why and walks you through three questions to capture your actual methodology.</p>
+
+Second, the best skills came from people with context already in front of them. Job descriptions, process docs, technical specs. So I built a Chrome extension (currently in the approval process). Highlight text on any page, right-click, generate a skill. No copy-pasting required.
+
+The grading system still needs work ("hey bro" shouldn't outscore detailed technical specs). And I want to see what happens when people actually *use* these skills in their daily work.
+
+But 155 skills in 3.5 weeks tells me something: people want this. They want a way to make Claude work the way they work, without becoming prompt engineers.
+
+## Try It With Your Job
+
+I'm genuinely curious what happens with different professions. The data so far skews technical and finance. I haven't seen a single teacher, nurse, lawyer, or designer give it a real shot.
+
+[skillthis.ai](https://skillthis.ai?utm_source=goldsborough&utm_medium=blog&utm_campaign=155-skills-post) is still running. Describe what you're good at. See what grade you get.
+
+And if you beat "hey bro" with a two-word input, I want to hear about it.
