@@ -1,7 +1,7 @@
 ---
 title: "The Omnirepo: AI Orchestration Across Your Enterprise"
 description: What if your entire company lived in one structure that AI could traverse? How the omnirepo pattern enables horizontal orchestration from engineering through marketing to strategy.
-date: 2025-01-06
+date: 2026-01-06
 ---
 
 I've been running my company out of a single repository for the past year. Not just code. Strategy docs. Marketing materials. Brand voice. Operational playbooks. Everything.
@@ -287,11 +287,13 @@ acme/
 ```
 
 **Pros:**
+
 - Simpler to manage
 - Atomic commits across the whole org
 - Single clone, single history
 
 **Cons:**
+
 - All-or-nothing permissions (everyone sees everything)
 - Can get unwieldy at scale
 - Not great for compliance requirements
@@ -312,12 +314,14 @@ acme/                          # Root meta-repo
 ```
 
 **Pros:**
+
 - Granular permissions per submodule
 - Each team owns their repo
 - Works with existing enterprise access controls
 - Scales to large organizations
 
 **Cons:**
+
 - More complex to manage (submodule sync, updates)
 - Commits don't span repos atomically
 - Requires discipline to keep in sync
