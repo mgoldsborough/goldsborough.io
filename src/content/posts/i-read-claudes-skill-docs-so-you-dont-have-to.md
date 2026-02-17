@@ -1,7 +1,7 @@
 ---
 title: "I Read Claude's Skill Docs So You Don't Have To"
 description: SkillThis.ai generates AI-ready skills from your expertise. We extracted the best practices so you get proper formatting without reading the documentation.
-date: 2025-01-15
+date: 2026-01-15
 ---
 
 I've been writing Claude Code skills for months. And every time, I'd go back to the docs.
@@ -52,14 +52,14 @@ We don't just generate skills. We grade them.
 
 Every skill gets scored on a 100-point scale based on Claude's actual best practices:
 
-| Criteria | Points | What We Check |
-|----------|--------|---------------|
-| Format Compliance | 15 | Valid YAML, kebab-case name, third-person description |
-| Conciseness | 15 | Doesn't over-explain basics (Claude is smart) |
-| Quick Start | 15 | Immediate actionable value, no preamble |
-| Workflow Quality | 15 | Clear steps, checklists for complex processes |
-| Examples | 20 | Concrete input/output pairs, not abstract descriptions |
-| Completeness | 20 | Edge cases, pitfalls, templates where applicable |
+| Criteria          | Points | What We Check                                          |
+| ----------------- | ------ | ------------------------------------------------------ |
+| Format Compliance | 15     | Valid YAML, kebab-case name, third-person description  |
+| Conciseness       | 15     | Doesn't over-explain basics (Claude is smart)          |
+| Quick Start       | 15     | Immediate actionable value, no preamble                |
+| Workflow Quality  | 15     | Clear steps, checklists for complex processes          |
+| Examples          | 20     | Concrete input/output pairs, not abstract descriptions |
+| Completeness      | 20     | Edge cases, pitfalls, templates where applicable       |
 
 The grading is harsh. Most skills score 40-70. If you hit 80+, you've got something genuinely useful.
 
