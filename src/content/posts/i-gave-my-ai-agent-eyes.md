@@ -1,7 +1,7 @@
 ---
 title: "I Gave My AI Agent Eyes"
 description: How Chrome DevTools MCP creates a closed feedback loop where AI agents can see, evaluate, and fix what they build in real time.
-date: 2026-02-15
+date: 2026-02-18
 ---
 
 Last night I took a single HTML file, a concept mockup for a community landing page, and shipped it as a live Astro site on a custom domain. DNS configured, HTTPS enforced, GitHub Pages deploying on push. One session. One conversation with Claude.
